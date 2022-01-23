@@ -1,4 +1,7 @@
+#include <GL/glew.h>
 #include <GLFW/glfw3.h>
+
+#include <iostream>
 
 int main(void)
 {
@@ -19,17 +22,25 @@ int main(void)
     /* Make the window's context current */
     glfwMakeContextCurrent(window);
 
+    if (glewInit() != GLEW_OK)
+    {
+        std::cout << "ohhhhhhhhh" << std::endl;
+        return 1;
+    }
+
     /* Loop until the user closes the window */
     while (!glfwWindowShouldClose(window))
     {
+
+        glAttachShader(0, 0);
         glClearColor(1, 0, 0, 1);
         /* Render here */
         glClear(GL_COLOR_BUFFER_BIT);
 
         glBegin(GL_TRIANGLES);
         glVertex2f(-0.5f, -0.5f);
-        glVertex2f( 0.0f,  0.5f);
-        glVertex2f( 0.5f, -0.5f);
+        glVertex2f(0.0f, 0.5f);
+        glVertex2f(0.5f, -0.5f);
         glEnd();
 
         /* Swap front and back buffers */
@@ -42,5 +53,3 @@ int main(void)
     glfwTerminate();
     return 0;
 }
-
-// ;%(AdditionalDependencies)
