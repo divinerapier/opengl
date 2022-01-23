@@ -1,38 +1,72 @@
 # OpenGL
 
-`OpenGL` Ñ§Ï°ÏîÄ¿¡£
+`OpenGL` å­¦ä¹ é¡¹ç›®ã€‚
 
-## ¿ª·¢Æ½Ì¨
+## å¼€å‘å¹³å°
 
 * windows11
 * vs2022
 * GLFW 3.3.6
 
-## »·¾³ÅäÖÃ
+## ç¯å¢ƒé…ç½®
 
-ÓÒ¼üµã»÷ÏîÄ¿£¬½øÈë `properties`¡£
+å³é”®ç‚¹å‡»é¡¹ç›®ï¼Œè¿›å…¥ `properties`ã€‚
 
-* ½« `Configuration` ÉèÖÃÎª `All Configurations`
-* ÔÚ `Configuration Properties` > `C/C++` > `General` > `Additional Include Directories` Ìí¼Ó `$(SolutionDir)dependencies\glfw\include`
-* ÔÚ `Configuration Properties` > `Linker` > `General` > `Additional Library Directories` Ìí¼Ó `$(SolutionDir)dependencies\glfw\lib-vc2022`
-* ÔÚ `Configuration Properties` > `Linker` > `Input` > `Additional Dependencies` Ìí¼Ó `glfw3.lib`
+* å°† `Configuration` è®¾ç½®ä¸º `All Configurations`
+* åœ¨ `Configuration Properties` > `C/C++` > `General` > `Additional Include Directories` æ·»åŠ  `$(SolutionDir)dependencies\glfw\include`
+* åœ¨ `Configuration Properties` > `Linker` > `General` > `Additional Library Directories` æ·»åŠ  `$(SolutionDir)dependencies\glfw\lib-vc2022`
+* åœ¨ `Configuration Properties` > `Linker` > `Input` > `Additional Dependencies` æ·»åŠ  `glfw3.lib`
 
-## ±àÒë
+## ç¼–è¯‘
 
-Ñ¡ÖĞ `Application.cpp` °´ `ctrl + f7` ¿ÉÒÔ±àÒëÎÄ¼ş£¬µ«²¢²»»áÁ´½Ó¡£
+é€‰ä¸­ `Application.cpp` æŒ‰ `ctrl + f7` å¯ä»¥ç¼–è¯‘æ–‡ä»¶ï¼Œä½†å¹¶ä¸ä¼šé“¾æ¥ã€‚
 
-## ¹¹½¨½â¾ö·½°¸
+## æ„å»ºè§£å†³æ–¹æ¡ˆ
 
-°´ `f7` »á¹¹½¨µ±Ç°½â¾ö·½°¸¡£
+æŒ‰ `f7` ä¼šæ„å»ºå½“å‰è§£å†³æ–¹æ¡ˆã€‚
 
-## ³£¼û´íÎó
+## å¸¸è§é”™è¯¯
 
 * `1>Application.obj : error LNK2019: unresolved external symbol __imp__glClear@4 referenced in function _main`
-  * `Configuration Properties` > `Linker` > `Input` > `Additional Dependencies` Ìí¼Ó `opengl32.lib`
+  * `Configuration Properties` > `Linker` > `Input` > `Additional Dependencies` æ·»åŠ  `opengl32.lib`
 * `1>glfw3.lib(win32_init.obj) : error LNK2019: unresolved external symbol __imp__TranslateMessage@4 referenced in function __glfwPlatformInit`
-    * ÔÚ `google.com` ÖĞËÑË÷ `TranslateMessage` ½øÈë `https://docs.microsoft.com/` µÄÁ´½Ó£¬ÔÚ×îÏÂ·½¿ÉÒÔÕÒµ½ `Library User32.lib`£¬½« `User32.lib` Ìí¼Óµ½ `Configuration Properties` > `Linker` > `Input` > `Additional Dependencies`¡£
+  * åœ¨ `google.com` ä¸­æœç´¢ `TranslateMessage` è¿›å…¥ `https://docs.microsoft.com/` çš„é“¾æ¥ï¼Œåœ¨æœ€ä¸‹æ–¹å¯ä»¥æ‰¾åˆ° `Library User32.lib`ï¼Œå°† `User32.lib` æ·»åŠ åˆ° `Configuration Properties` > `Linker` > `Input` > `Additional Dependencies`ã€‚
 
-## Ïà¹ØÁ´½Ó
+## OpenGL åº”ç”¨
+
+### æ„å»ºä¸‰è§’å½¢
+
+#### GlClear
+
+[glClear](https://docs.microsoft.com/zh-cn/windows/win32/opengl/glclear) å‡½æ•°å°†ç¼“å†²åŒºæ¸…é™¤ä¸ºé¢„è®¾å€¼ï¼Œå³é‡ç½®ç¼“å†²åŒºé¢œè‰²ã€‚ç›®æ ‡é¢œè‰²ç”± [glClearColor](https://docs.microsoft.com/en-us/windows/win32/opengl/glclearcolor) ç¡®å®šã€‚ä¾‹å¦‚ï¼Œåœ¨è°ƒç”¨ `glClear` ä¹‹å‰è°ƒç”¨äº† `glClearColor(1, 0, 0, 1)`ï¼Œåˆ™ç¼“å†²åŒºä¼šè¢«é‡ç½®ä¸ºçº¢è‰²ã€‚
+
+#### GlBegin
+
+[glBegin & glEnd](https://docs.microsoft.com/en-us/windows/win32/opengl/glbegin) å‡½æ•°ä¹‹é—´åŒ…å«è‹¥å¹²åŸºæœ¬çš„ç‚¹ã€‚
+
+`glBegin` çš„å‡½æ•°å‚æ•°è¡¨ç¤ºå¦‚ä½•å‘ˆç°è¿™äº›ç‚¹ã€‚
+
+``` c++
+while (!glfwWindowShouldClose(window)) {
+    /* Render here */
+    glClear(GL_COLOR_BUFFER_BIT);
+
+    glBegin(GL_TRIANGLES);
+    glVertex2f(-0.5f, -0.5f);
+    glVertex2f( 0.0f,  0.5f);
+    glVertex2f( 0.5f, -0.5f);
+    glEnd();
+
+    /* Swap front and back buffers */
+    glfwSwapBuffers(window);
+
+    /* Poll for and process events */
+    glfwPollEvents();
+}
+```
+
+## ç›¸å…³é“¾æ¥
 
 * https://docs.microsoft.com/en-us/windows/win32/
 * https://www.glfw.org/
+* https://www.cnblogs.com/tjulym/p/5037124.html
