@@ -84,9 +84,11 @@ while (!glfwWindowShouldClose(window)) {
 }
 ```
 
-## GLEW 从 0 开始
+## GLEW
 
-### Include
+### 从 0 开始
+
+#### Include
 
 包含 `<GL/glew.h>` 文件时，`#include <GL/glew.h>` 必须写在其他有关 `OpenGL` 的头文件语句之前，否则会出现错误:
 
@@ -100,7 +102,7 @@ while (!glfwWindowShouldClose(window)) {
 #endif
 ```
 
-### 初始化
+#### 初始化
 
 根据 [文档](http://glew.sourceforge.net/basic.html) 可知，使用函数 `glewInit()` 函数进行初始化。但如果直接使用，会有链接错误:
 
@@ -235,7 +237,19 @@ int main(void)
 }
 ```
 
-### 如何使用更多功能
+#### 编写第一个 Shader 程序
+
+`Shader` 的本质是一段代码，其作用是对 `GPU` 编程，告诉 `GPU` 如何进行渲染。
+
+``` c
+// 编译两个 Shader 代码，传入的字符串表示源代码
+// 顶点着色器(VertexShader) 与 片断着色器(FragmentShader)
+static int CreateShader(const std::string& vertexShader, const std::string& fragmentShader) {
+
+}
+```
+
+#### 如何使用更多功能
 
 `GLEW` 提供强大的运行时机制，根据平台判断哪些 `OpenGL` 扩展功能可以使用。其头文件中包含了大量的函数指针，以函数 `glAttachShader` 为例，使用 `IDE` 层层跳转:
 
@@ -253,9 +267,12 @@ typedef void (GLAPIENTRY * PFNGLATTACHSHADERPROC) (GLuint program, GLuint shader
 
 最终，`glAttachShader` 其实是一个函数指针 `typedef void (GLAPIENTRY * PFNGLATTACHSHADERPROC) (GLuint program, GLuint shader);` 最终的功能由显示设备提供支持。
 
+### GLEW 绘制三角形
+
 ## 相关链接
 
-* https://docs.microsoft.com/en-us/windows/win32/
-* https://www.glfw.org/
+* [Windows API](https://docs.microsoft.com/en-us/windows/win32/)
+* [GLFW](https://www.glfw.org/)
 * https://www.cnblogs.com/tjulym/p/5037124.html
-* http://glew.sourceforge.net/
+* [GLEW](http://glew.sourceforge.net/)
+* [OpenGL API](https://docs.gl/)
