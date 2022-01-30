@@ -15,7 +15,12 @@
       "ProjectGuid": "abba852d-3e89-4b45-921c-bf3a78757ee5",
       "DisplayName": "glew-draw-triangles",
       "ColorIndex": 1
+    },
+    "f29fa196-c873-46fa-acfb-864d860128b2": {
+      "ProjectGuid": "f29fa196-c873-46fa-acfb-864d860128b2",
+      "DisplayName": "pointcloudviewer",
+      "ColorIndex": 2
     }
   },
-  "NextColorIndex": 2
+  "NextColorIndex": 3
 }

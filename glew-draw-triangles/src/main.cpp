@@ -12,7 +12,7 @@ static unsigned int ComplieShader(unsigned int type, const std::string& source) 
     // sets the source code in shader to the source code in the array of strings specified by string. 
     // 替换 Shader 中的代码
     // 
-    // id: Shader 对象的句柄。
+    // id: Shader 对象的描述符。
     // 
     // count: string 数组的长度
     // 
@@ -48,8 +48,8 @@ static unsigned int ComplieShader(unsigned int type, const std::string& source) 
 
 
 
-// CreateShader 创建着色器，函数接收着色器源代码
-static unsigned int CreateShader(const std::string& vertexShader, const std::string& fragmentShader) {
+// CreateProgram 输入 Shader 源码，返回相应的 Shader 程序
+static unsigned int CreateProgram(const std::string& vertexShader, const std::string& fragmentShader) {
     unsigned int program = glCreateProgram();
     unsigned int vs = ComplieShader(GL_VERTEX_SHADER, vertexShader);
     unsigned int fs = ComplieShader(GL_FRAGMENT_SHADER, fragmentShader);
@@ -94,12 +94,13 @@ int main(void) {
 
     // 数据部分 
     unsigned int buffer = 0;
+    // https://docs.gl/gl4/glGenBuffers
     glGenBuffers(1, &buffer);
+    // https://docs.gl/gl4/glBindBuffer
     glBindBuffer(GL_ARRAY_BUFFER, buffer);
-
     // https://docs.gl/gl4/glBufferData
     glBufferData(GL_ARRAY_BUFFER, 6 * sizeof(float), (const void*)(&positions), GL_STATIC_DRAW);
-
+    // https://docs.gl/gl4/glEnableVertexAttribArray
     glEnableVertexAttribArray(0);
 
 
@@ -130,8 +131,8 @@ int main(void) {
         "}\n"
         "";
 
-    unsigned int shader = CreateShader(vertexShader, fragmentShader);
-    glUseProgram(shader);
+    unsigned int program = CreateProgram(vertexShader, fragmentShader);
+    glUseProgram(program);
 
 
     /* Loop until the user closes the window */
@@ -153,7 +154,7 @@ int main(void) {
 
     glfwTerminate();
 
-    glDeleteProgram(shader);
+    glDeleteProgram(program);
 
     return 0;
 }
