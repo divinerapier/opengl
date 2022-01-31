@@ -94,7 +94,7 @@ while (!glfwWindowShouldClose(window)) {
 
 > 1>C:\Users\divinerapier\Documents\code\opengl\opengl\dependencies\glew-2.1.0\include\GL\glew.h(85,1): fatal error C1189: #error:  gl.h included before glew.h
 
-因在，在 `<GL/glew.h>` 文件中会进行判断:
+因为，在 `<GL/glew.h>` 文件中会进行判断:
 
 ``` c
 #if defined(__gl_h_) || defined(__GL_H__) || defined(_GL_H) || defined(__X_GL_H)
@@ -376,7 +376,7 @@ std::string vertexShader =
 std::string fragmentShader =
     "#version 330 core\n"
     "\n"
-    "layout(location = 0) out vec4 color;\n" // location = 0 对应 glVertexAttribPointer 的第一个参数 index 传 0, vec4 是因为 gl_Position 是一个 vec4，虽然 glVertexAttribPointer 的第二个参数传 2 (即 vec2)，但即使使用了 vec2，在 gl_Position 处还是要转换为 vec4
+    "layout(location = 0) out vec4 color;\n"
     "\n"
     "void main() {\n"
     "    color = vec4(0.0, 1.0, 0.0, 1.0);\n" // 0: 黑色 1: 白色 范围: 0-1 (类比 0-255) 顺序: rgba

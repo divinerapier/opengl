@@ -13,8 +13,7 @@ int main(void)
 
     /* Create a windowed mode window and its OpenGL context */
     window = glfwCreateWindow(640, 480, "Hello World", NULL, NULL);
-    if (!window)
-    {
+    if (!window) {
         glfwTerminate();
         return -1;
     }
@@ -22,15 +21,13 @@ int main(void)
     /* Make the window's context current */
     glfwMakeContextCurrent(window);
 
-    if (glewInit() != GLEW_OK)
-    {
-        std::cout << "ohhhhhhhhh" << std::endl;
-        return 1;
+    if (glewInit() != GLEW_OK) {
+       std::cout << "ohhhhhhhhh" << std::endl;
+       return 1;
     }
 
     /* Loop until the user closes the window */
-    while (!glfwWindowShouldClose(window))
-    {
+    while (!glfwWindowShouldClose(window)) {
 
         glAttachShader(0, 0);
         glClearColor(1, 0, 0, 1);
