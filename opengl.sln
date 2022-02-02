@@ -9,6 +9,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "glew-draw-triangles", "glew
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "load-shader-from-files", "load-shader-from-files\load-shader-from-files.vcxproj", "{6B42621E-DEB1-47E0-A1BE-B0C76CA47566}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "use-index-buffer-to-draw-triangles", "use-index-buffer-to-draw-triangles\use-index-buffer-to-draw-triangles.vcxproj", "{89FE94A3-3C51-4856-B94A-6E9886EF90B9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -41,6 +43,14 @@ Global
 		{6B42621E-DEB1-47E0-A1BE-B0C76CA47566}.Release|x64.Build.0 = Release|x64
 		{6B42621E-DEB1-47E0-A1BE-B0C76CA47566}.Release|x86.ActiveCfg = Release|Win32
 		{6B42621E-DEB1-47E0-A1BE-B0C76CA47566}.Release|x86.Build.0 = Release|Win32
+		{89FE94A3-3C51-4856-B94A-6E9886EF90B9}.Debug|x64.ActiveCfg = Debug|x64
+		{89FE94A3-3C51-4856-B94A-6E9886EF90B9}.Debug|x64.Build.0 = Debug|x64
+		{89FE94A3-3C51-4856-B94A-6E9886EF90B9}.Debug|x86.ActiveCfg = Debug|Win32
+		{89FE94A3-3C51-4856-B94A-6E9886EF90B9}.Debug|x86.Build.0 = Debug|Win32
+		{89FE94A3-3C51-4856-B94A-6E9886EF90B9}.Release|x64.ActiveCfg = Release|x64
+		{89FE94A3-3C51-4856-B94A-6E9886EF90B9}.Release|x64.Build.0 = Release|x64
+		{89FE94A3-3C51-4856-B94A-6E9886EF90B9}.Release|x86.ActiveCfg = Release|Win32
+		{89FE94A3-3C51-4856-B94A-6E9886EF90B9}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -20,7 +20,12 @@
       "ProjectGuid": "f29fa196-c873-46fa-acfb-864d860128b2",
       "DisplayName": "pointcloudviewer",
       "ColorIndex": 2
+    },
+    "6b42621e-deb1-47e0-a1be-b0c76ca47566": {
+      "ProjectGuid": "6b42621e-deb1-47e0-a1be-b0c76ca47566",
+      "DisplayName": "load-shader-from-files",
+      "ColorIndex": 3
     }
   },
-  "NextColorIndex": 3
+  "NextColorIndex": 4
 }
