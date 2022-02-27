@@ -1,8 +1,8 @@
 #shader vertex
 #version 330 core
 
-// location = 0 ¶ÔÓ¦ glVertexAttribPointer µÄµÚÒ»¸ö²ÎÊı index ´« 0, vec4 ÊÇÒòÎª gl_Position ÊÇÒ»¸ö vec4£¬
-// ËäÈ» glVertexAttribPointer µÄµÚ¶ş¸ö²ÎÊı´« 2 (¼´ vec2)£¬µ«¼´Ê¹Ê¹ÓÃÁË vec2£¬ÔÚ gl_Position ´¦»¹ÊÇÒª×ª»»Îª vec4
+// location = 0 å¯¹åº” glVertexAttribPointer çš„ç¬¬ä¸€ä¸ªå‚æ•° index ä¼  0, vec4 æ˜¯å› ä¸º gl_Position æ˜¯ä¸€ä¸ª vec4ï¼Œ
+// è™½ç„¶ glVertexAttribPointer çš„ç¬¬äºŒä¸ªå‚æ•°ä¼  2 (å³ vec2)ï¼Œä½†å³ä½¿ä½¿ç”¨äº† vec2ï¼Œåœ¨ gl_Position å¤„è¿˜æ˜¯è¦è½¬æ¢ä¸º vec4
 layout(location = 0) in vec4 position;
 
 void main() {
@@ -16,6 +16,6 @@ void main() {
 layout(location = 0) out vec4 color;
 
 void main() {
-    // 0: ºÚÉ« 1: °×É« ·¶Î§: 0-1 (Àà±È 0-255) Ë³Ğò: rgba
+    // 0: é»‘è‰² 1: ç™½è‰² èŒƒå›´: 0-1 (ç±»æ¯” 0-255) é¡ºåº: rgba
     color = vec4(0.0, 1.0, 0.0, 1.0);
 }
