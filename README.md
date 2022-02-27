@@ -4,54 +4,19 @@
 
 ## 开发平台
 
-* windows11
-* vs2022
-* GLFW 3.3.6
-* GLEW
-
-## 环境配置
-
-右键点击项目，进入 `properties`。
-
-* 将 `Configuration` 设置为 `All Configurations`
-
-### GLFW
-
-* 在 `Configuration Properties` > `C/C++` > `General` > `Additional Include Directories` 添加 `$(SolutionDir)dependencies\glfw\include`
-* 在 `Configuration Properties` > `Linker` > `General` > `Additional Library Directories` 添加 `$(SolutionDir)dependencies\glfw\lib-vc2022`
-* 在 `Configuration Properties` > `Linker` > `Input` > `Additional Dependencies` 添加 `glfw3.lib`
-
-### GLEW
-
-* 在 `Configuration Properties` > `C/C++` > `General` > `Additional Include Directories` 添加 `$(SolutionDir)dependencies\glew-2.1.0\include`
-* 在 `Configuration Properties` > `Linker` > `General` > `Additional Library Directories` 添加 `$(SolutionDir)dependencies\glew-2.1.0\lib\Release\Win32`
-* 在 `Configuration Properties` > `Linker` > `Input` > `Additional Dependencies` 添加 `glew32s.lib`
-
-#### 静态链接库
-
-在 `lib` 文件夹下存在两个文件
-
-``` text
-glew32.lib
-glew32s.lib
-```
-
-其中，`glew32.lib` 需要配合 `dll` 一起使用，`glew32s.lib` 用于静态链接。
+* Arch Linux x86_64
+* Kernel 5.16.10-zen1-1-zen
+* GLFW 3
+* GLEW 2.2
 
 ## 编译
 
-选中 `Application.cpp` 按 `ctrl + f7` 可以编译文件，但并不会链接。
-
-## 构建解决方案
-
-按 `f7` 会构建当前解决方案。
-
-## 常见错误
-
-* `1>Application.obj : error LNK2019: unresolved external symbol __imp__glClear@4 referenced in function _main`
-  * `Configuration Properties` > `Linker` > `Input` > `Additional Dependencies` 添加 `opengl32.lib`
-* `1>glfw3.lib(win32_init.obj) : error LNK2019: unresolved external symbol __imp__TranslateMessage@4 referenced in function __glfwPlatformInit`
-  * 在 `google.com` 中搜索 `TranslateMessage` 进入 `https://docs.microsoft.com/` 的链接，在最下方可以找到 `Library User32.lib`，将 `User32.lib` 添加到 `Configuration Properties` > `Linker` > `Input` > `Additional Dependencies`。
+``` bash
+mkdir build && \
+    cd build && \
+    cmake .. && \
+    make
+```
 
 ## 使用 GLFW 构建三角形
 
@@ -92,7 +57,12 @@ while (!glfwWindowShouldClose(window)) {
 
 包含 `<GL/glew.h>` 文件时，`#include <GL/glew.h>` 必须写在其他有关 `OpenGL` 的头文件语句之前，否则会出现错误:
 
-> 1>C:\Users\divinerapier\Documents\code\opengl\opengl\dependencies\glew-2.1.0\include\GL\glew.h(85,1): fatal error C1189: #error:  gl.h included before glew.h
+``` text
+In file included from /home/divinerapier/code/c/github.com/divinerapier/opengl/glew-draw-triangles/src/main.cpp:2:
+/usr/include/GL/glew.h:85:2: 错误：#error gl.h included before glew.h
+   85 | #error gl.h included before glew.h
+      |  ^~~~~
+```
 
 因为，在 `<GL/glew.h>` 文件中会进行判断:
 
@@ -103,53 +73,6 @@ while (!glfwWindowShouldClose(window)) {
 ```
 
 #### 初始化
-
-根据 [文档](http://glew.sourceforge.net/basic.html) 可知，使用函数 `glewInit()` 函数进行初始化。但如果直接使用，会有链接错误:
-
-``` c
-#include <GL/glew.h>
-#include <GLFW/glfw3.h>
-
-int main(void) {
-    glewInit();
-}
-```
-
-`1>Application.obj : error LNK2019: unresolved external symbol __imp__glewInit@0 referenced in function _main`。
-
-跳转到 `glewInit()` 函数的源代码:
-
-``` c
-GLEWAPI GLenum GLEWAPIENTRY glewInit (void);
-```
-
-再跳转到 `GLEWAPI` 的宏定义:
-
-``` c
-#ifdef GLEW_STATIC
-#  define GLEWAPI extern
-#else
-#  ifdef GLEW_BUILD
-#    define GLEWAPI extern __declspec(dllexport)
-#  else
-#    define GLEWAPI extern __declspec(dllimport)
-#  endif
-#endif
-```
-
-可以发现，由于 `GLEW_STATIC` 与 `GLEW_BUILD` 均未定义，因此，会使用
-
-``` c
-define GLEWAPI extern __declspec(dllimport)
-```
-
-解决办法就是定义 `GLEW_STATIC`。
-
-在 `Configuration Properties` > `C/C++` > `Preprocessor` > `Preprocessor Definitions` 中添加 `GLEW_STATIC`。
-
-现在，就可以正常的编译过了。
-
-接下来，还是根据 [文档](http://glew.sourceforge.net/basic.html) 可知，`glewInit()` 函数执行正确后会返回 `GLEW_OK`。所以，在函数入口出，初始化 `glfw` 之前初始化 `glew`:
 
 ``` c
 #include <GL/glew.h>
@@ -466,8 +389,7 @@ return 0;
 
 ## 相关链接
 
-* [Windows API](https://docs.microsoft.com/en-us/windows/win32/)
 * [GLFW](https://www.glfw.org/)
-* https://www.cnblogs.com/tjulym/p/5037124.html
+* <https://www.cnblogs.com/tjulym/p/5037124.html>
 * [GLEW](http://glew.sourceforge.net/)
 * [OpenGL API](https://docs.gl/)

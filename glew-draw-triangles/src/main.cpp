@@ -10,15 +10,15 @@ static unsigned int ComplieShader(unsigned int type, const std::string& source) 
     // void glShaderSource(GLuint shader, GLsizei count, const GLchar * *string, const GLint * length);
     // 
     // sets the source code in shader to the source code in the array of strings specified by string. 
-    // Ìæ»» Shader ÖĞµÄ´úÂë
+    // æ›¿æ¢ Shader ä¸­çš„ä»£ç 
     // 
-    // id: Shader ¶ÔÏóµÄÃèÊö·û¡£
+    // id: Shader å¯¹è±¡çš„æè¿°ç¬¦ã€‚
     // 
-    // count: string Êı×éµÄ³¤¶È
+    // count: string æ•°ç»„çš„é•¿åº¦
     // 
-    // string: ´úÂëÊı×é£¬ÀàĞÍÎª const char**£¬Òò´Ë£¬¿ÉÒÔ´«Èë¶à¸ö Shader ´úÂë£¬ÊıÁ¿Îª count
+    // string: ä»£ç æ•°ç»„ï¼Œç±»å‹ä¸º const char**ï¼Œå› æ­¤ï¼Œå¯ä»¥ä¼ å…¥å¤šä¸ª Shader ä»£ç ï¼Œæ•°é‡ä¸º count
     // 
-    // length: ³¤¶ÈÊı×é£¬ÀàĞÍÎª const int*£¬Êı×éÖĞµÄÃ¿¸öÔªËØ±íÊ¾¶ÔÓ¦ string ²ÎÊıÔªËØµÄ×Ö·û´®³¤¶È£¬NULL ±íÊ¾×Ö·û´®ÒÔ NULL ½áÊø
+    // length: é•¿åº¦æ•°ç»„ï¼Œç±»å‹ä¸º const int*ï¼Œæ•°ç»„ä¸­çš„æ¯ä¸ªå…ƒç´ è¡¨ç¤ºå¯¹åº” string å‚æ•°å…ƒç´ çš„å­—ç¬¦ä¸²é•¿åº¦ï¼ŒNULL è¡¨ç¤ºå­—ç¬¦ä¸²ä»¥ NULL ç»“æŸ
     // If length is NULL, each string is assumed to be null terminated.
     // 
     // The source code strings are not scanned or parsed at this time; they are simply copied into the specified shader object.
@@ -27,7 +27,7 @@ static unsigned int ComplieShader(unsigned int type, const std::string& source) 
 
     int result = 0;
     glGetShaderiv(id, GL_COMPILE_STATUS, &result);
-    // ´íÎó´¦Àí
+    // é”™è¯¯å¤„ç†
     if (GL_FALSE == result) {
         int length = 0;
         glGetShaderiv(id, GL_INFO_LOG_LENGTH, &length);
@@ -48,7 +48,7 @@ static unsigned int ComplieShader(unsigned int type, const std::string& source) 
 
 
 
-// CreateProgram ÊäÈë Shader Ô´Âë£¬·µ»ØÏàÓ¦µÄ Shader ³ÌĞò
+// CreateProgram è¾“å…¥ Shader æºç ï¼Œè¿”å›ç›¸åº”çš„ Shader ç¨‹åº
 static unsigned int CreateProgram(const std::string& vertexShader, const std::string& fragmentShader) {
     unsigned int program = glCreateProgram();
     unsigned int vs = ComplieShader(GL_VERTEX_SHADER, vertexShader);
@@ -92,7 +92,7 @@ int main(void) {
          0.5f, -0.5f
     };
 
-    // Êı¾İ²¿·Ö 
+    // æ•°æ®éƒ¨åˆ† 
     unsigned int buffer = 0;
     // https://docs.gl/gl4/glGenBuffers
     glGenBuffers(1, &buffer);
@@ -106,15 +106,15 @@ int main(void) {
 
     // https://docs.gl/gl4/glVertexAttribPointer
     // 
-    // size: Ã¿¸ö¶¥µãÔªËØ¸öÊı (´Ë´¦Ã¿¸ö¶¥µã°üº¬ 2 ¸ö float)
-    // type: Ã¿¸öÔªËØµÄÊı¾İÀàĞÍ (´Ë´¦Îª float)
-    // stride: ¶¥µãÎ»ÖÃÖ®¼äµÄ¾àÀë(×Ö½ÚÊı)
+    // size: æ¯ä¸ªé¡¶ç‚¹å…ƒç´ ä¸ªæ•° (æ­¤å¤„æ¯ä¸ªé¡¶ç‚¹åŒ…å« 2 ä¸ª float)
+    // type: æ¯ä¸ªå…ƒç´ çš„æ•°æ®ç±»å‹ (æ­¤å¤„ä¸º float)
+    // stride: é¡¶ç‚¹ä½ç½®ä¹‹é—´çš„è·ç¦»(å­—èŠ‚æ•°)
     glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0);
 
     std::string vertexShader =
         "#version 330 core\n"
         "\n"
-        "layout(location = 0) in vec4 position;\n" // location = 0 ¶ÔÓ¦ glVertexAttribPointer µÄµÚÒ»¸ö²ÎÊı index ´« 0, vec4 ÊÇÒòÎª gl_Position ÊÇÒ»¸ö vec4£¬ËäÈ» glVertexAttribPointer µÄµÚ¶ş¸ö²ÎÊı´« 2 (¼´ vec2)£¬µ«¼´Ê¹Ê¹ÓÃÁË vec2£¬ÔÚ gl_Position ´¦»¹ÊÇÒª×ª»»Îª vec4
+        "layout(location = 0) in vec4 position;\n" // location = 0 å¯¹åº” glVertexAttribPointer çš„ç¬¬ä¸€ä¸ªå‚æ•° index ä¼  0, vec4 æ˜¯å› ä¸º gl_Position æ˜¯ä¸€ä¸ª vec4ï¼Œè™½ç„¶ glVertexAttribPointer çš„ç¬¬äºŒä¸ªå‚æ•°ä¼  2 (å³ vec2)ï¼Œä½†å³ä½¿ä½¿ç”¨äº† vec2ï¼Œåœ¨ gl_Position å¤„è¿˜æ˜¯è¦è½¬æ¢ä¸º vec4
         "\n"
         "void main() {\n"
         "    gl_Position = position;\n"
@@ -124,10 +124,10 @@ int main(void) {
     std::string fragmentShader =
         "#version 330 core\n"
         "\n"
-        "layout(location = 0) out vec4 color;\n" // location = 0 ¶ÔÓ¦ glVertexAttribPointer µÄµÚÒ»¸ö²ÎÊı index ´« 0, vec4 ÊÇÒòÎª gl_Position ÊÇÒ»¸ö vec4£¬ËäÈ» glVertexAttribPointer µÄµÚ¶ş¸ö²ÎÊı´« 2 (¼´ vec2)£¬µ«¼´Ê¹Ê¹ÓÃÁË vec2£¬ÔÚ gl_Position ´¦»¹ÊÇÒª×ª»»Îª vec4
+        "layout(location = 0) out vec4 color;\n" // location = 0 å¯¹åº” glVertexAttribPointer çš„ç¬¬ä¸€ä¸ªå‚æ•° index ä¼  0, vec4 æ˜¯å› ä¸º gl_Position æ˜¯ä¸€ä¸ª vec4ï¼Œè™½ç„¶ glVertexAttribPointer çš„ç¬¬äºŒä¸ªå‚æ•°ä¼  2 (å³ vec2)ï¼Œä½†å³ä½¿ä½¿ç”¨äº† vec2ï¼Œåœ¨ gl_Position å¤„è¿˜æ˜¯è¦è½¬æ¢ä¸º vec4
         "\n"
         "void main() {\n"
-        "    color = vec4(0.0, 1.0, 0.0, 1.0);\n" // 0: ºÚÉ« 1: °×É« ·¶Î§: 0-1 (Àà±È 0-255) Ë³Ğò: rgba
+        "    color = vec4(0.0, 1.0, 0.0, 1.0);\n" // 0: é»‘è‰² 1: ç™½è‰² èŒƒå›´: 0-1 (ç±»æ¯” 0-255) é¡ºåº: rgba
         "}\n"
         "";
 
