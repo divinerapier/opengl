@@ -46,15 +46,15 @@ static unsigned int ComplieShader(unsigned int type, const std::string& source) 
     // void glShaderSource(GLuint shader, GLsizei count, const GLchar * *string, const GLint * length);
     // 
     // sets the source code in shader to the source code in the array of strings specified by string. 
-    // Ìæ»» Shader ÖĞµÄ´úÂë
+    // æ›¿æ¢ Shader ä¸­çš„ä»£ç 
     // 
-    // id: Shader ¶ÔÏóµÄÃèÊö·û¡£
+    // id: Shader å¯¹è±¡çš„æè¿°ç¬¦ã€‚
     // 
-    // count: string Êı×éµÄ³¤¶È
+    // count: string æ•°ç»„çš„é•¿åº¦
     // 
-    // string: ´úÂëÊı×é£¬ÀàĞÍÎª const char**£¬Òò´Ë£¬¿ÉÒÔ´«Èë¶à¸ö Shader ´úÂë£¬ÊıÁ¿Îª count
+    // string: ä»£ç æ•°ç»„ï¼Œç±»å‹ä¸º const char**ï¼Œå› æ­¤ï¼Œå¯ä»¥ä¼ å…¥å¤šä¸ª Shader ä»£ç ï¼Œæ•°é‡ä¸º count
     // 
-    // length: ³¤¶ÈÊı×é£¬ÀàĞÍÎª const int*£¬Êı×éÖĞµÄÃ¿¸öÔªËØ±íÊ¾¶ÔÓ¦ string ²ÎÊıÔªËØµÄ×Ö·û´®³¤¶È£¬NULL ±íÊ¾×Ö·û´®ÒÔ NULL ½áÊø
+    // length: é•¿åº¦æ•°ç»„ï¼Œç±»å‹ä¸º const int*ï¼Œæ•°ç»„ä¸­çš„æ¯ä¸ªå…ƒç´ è¡¨ç¤ºå¯¹åº” string å‚æ•°å…ƒç´ çš„å­—ç¬¦ä¸²é•¿åº¦ï¼ŒNULL è¡¨ç¤ºå­—ç¬¦ä¸²ä»¥ NULL ç»“æŸ
     // If length is NULL, each string is assumed to be null terminated.
     // 
     // The source code strings are not scanned or parsed at this time; they are simply copied into the specified shader object.
@@ -63,7 +63,7 @@ static unsigned int ComplieShader(unsigned int type, const std::string& source) 
 
     int result = 0;
     glGetShaderiv(id, GL_COMPILE_STATUS, &result);
-    // ´íÎó´¦Àí
+    // é”™è¯¯å¤„ç†
     if (GL_FALSE == result) {
         int length = 0;
         glGetShaderiv(id, GL_INFO_LOG_LENGTH, &length);
@@ -82,7 +82,7 @@ static unsigned int ComplieShader(unsigned int type, const std::string& source) 
     return id;
 }
 
-// CreateProgram ÊäÈë Shader Ô´Âë£¬·µ»ØÏàÓ¦µÄ Shader ³ÌĞò
+// CreateProgram è¾“å…¥ Shader æºç ï¼Œè¿”å›ç›¸åº”çš„ Shader ç¨‹åº
 static unsigned int CreateProgram(const std::string& vertexShader, const std::string& fragmentShader) {
     unsigned int program = glCreateProgram();
     unsigned int vs = ComplieShader(GL_VERTEX_SHADER, vertexShader);
@@ -132,7 +132,7 @@ int main(void) {
         2, 3, 0
     };
 
-    // Êı¾İ²¿·Ö 
+    // æ•°æ®éƒ¨åˆ† 
     unsigned int buffer = 0;
     // https://docs.gl/gl4/glGenBuffers
     glGenBuffers(1, &buffer);
@@ -146,9 +146,9 @@ int main(void) {
 
     // https://docs.gl/gl4/glVertexAttribPointer
     // 
-    // size: Ã¿¸ö¶¥µãÔªËØ¸öÊı (´Ë´¦Ã¿¸ö¶¥µã°üº¬ 2 ¸ö float)
-    // type: Ã¿¸öÔªËØµÄÊı¾İÀàĞÍ (´Ë´¦Îª float)
-    // stride: ¶¥µãÎ»ÖÃÖ®¼äµÄ¾àÀë(×Ö½ÚÊı)
+    // size: æ¯ä¸ªé¡¶ç‚¹å…ƒç´ ä¸ªæ•° (æ­¤å¤„æ¯ä¸ªé¡¶ç‚¹åŒ…å« 2 ä¸ª float)
+    // type: æ¯ä¸ªå…ƒç´ çš„æ•°æ®ç±»å‹ (æ­¤å¤„ä¸º float)
+    // stride: é¡¶ç‚¹ä½ç½®ä¹‹é—´çš„è·ç¦»(å­—èŠ‚æ•°)
     glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0);
 
 
@@ -171,7 +171,7 @@ int main(void) {
         /* Render here */
         glClear(GL_COLOR_BUFFER_BIT);
 
-        glDrawElements(GL_TRIANGLES, 6/*indexes µÄÊıÁ¿*/, GL_UNSIGNED_INT, nullptr);
+        glDrawElements(GL_TRIANGLES, 6/*indexes çš„æ•°é‡*/, GL_UNSIGNED_INT, nullptr);
 
         /* Swap front and back buffers */
         glfwSwapBuffers(window);

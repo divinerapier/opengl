@@ -17,5 +17,5 @@ layout(location = 0) out vec4 color;
 
 void main() {
     // 0: 黑色 1: 白色 范围: 0-1 (类比 0-255) 顺序: rgba
-    color = vec4(0.0, 1.0, 0.0, 1.0);
+    color = vec4(0.4, 1.0, 0.0, 1.0);
 }
