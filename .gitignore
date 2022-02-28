@@ -5,6 +5,7 @@ x86
 
 # ide
 .vs
+.vscode
 
 # build
 build
